@@ -31,6 +31,66 @@
 
 
     <main>
+        <!-- HERO SECTION -->
+<section class="hero">
+
+    <div class="hero-content">
+
+        <p class="hero-tag">✨ YOUR DANCE JOURNEY STARTS HERE</p>
+
+        <h2>Practice. Improve. <span>Perform.</span></h2>
+
+        <p>
+            Organize your dance routines, track your progress,
+            build your practice streak and become a better dancer every day.
+        </p>
+
+        <button onclick="document.getElementById('songName').focus()">
+            💃 Start Practicing
+        </button>
+
+    </div>
+
+    <div class="hero-emoji">
+        💃
+    </div>
+
+</section>
+<!-- DANCE CATEGORIES -->
+<section class="card categories-card">
+
+    <h2>💃 Explore Dance Styles</h2>
+
+    <p class="subtitle">
+        Choose your style and start practicing.
+    </p>
+
+    <div class="categories">
+
+        <button class="category" onclick="selectCategory('Bollywood')">
+            🎬
+            <span>Bollywood</span>
+        </button>
+
+        <button class="category" onclick="selectCategory('Hip-Hop')">
+            🔥
+            <span>Hip-Hop</span>
+        </button>
+
+        <button class="category" onclick="selectCategory('Classical')">
+            🪷
+            <span>Classical</span>
+        </button>
+
+        <button class="category" onclick="selectCategory('Freestyle')">
+            ✨
+            <span>Freestyle</span>
+        </button>
+
+    </div>
+
+</section>
+
 
         <!-- DASHBOARD -->
         <section class="dashboard">
@@ -285,6 +345,17 @@
                     </option>
 
                 </select>
+                <label>Dance Style</label>
+
+<select id="danceStyle">
+
+    <option value="Bollywood">Bollywood</option>
+    <option value="Hip-Hop">Hip-Hop</option>
+    <option value="Classical">Classical</option>
+    <option value="Freestyle">Freestyle</option>
+
+</select>
+
 
             </div>
 
