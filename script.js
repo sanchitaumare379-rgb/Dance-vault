@@ -8,6 +8,7 @@ function addRoutine() {
 
     const songName = document.getElementById("songName").value.trim();
     const difficulty = document.getElementById("difficulty").value;
+    const danceStyle = document.getElementById("danceStyle").value;
     const status = document.getElementById("status").value;
     const progress = Number(document.getElementById("progress").value);
     const notes = document.getElementById("notes").value.trim();
@@ -23,6 +24,7 @@ function addRoutine() {
     const routine = {
         songName,
         difficulty,
+        danceStyle,
         status,
         progress,
         notes,
@@ -111,6 +113,10 @@ function displayRoutines() {
 
             <p>
                 🎯 <strong>Difficulty:</strong>
+                <p>
+    💃 <strong>Style:</strong>
+    ${escapeHTML(routine.danceStyle || "Not selected")}
+</p>
                 ${escapeHTML(routine.difficulty)}
             </p>
 
@@ -512,6 +518,24 @@ filterDifficulty.addEventListener(
     "change",
     filterRoutines
 );
+function selectCategory(category) {
+
+    const cards = document.querySelectorAll("#routineList > div");
+
+    cards.forEach(card => {
+
+        const style = card.innerText.toLowerCase();
+
+        card.style.display =
+            style.includes(category.toLowerCase())
+            ? "block"
+            : "none";
+    });
+
+    document.getElementById("routineList").scrollIntoView({
+        behavior: "smooth"
+    });
+}
 
 
 // DARK MODE
