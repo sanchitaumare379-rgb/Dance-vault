@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DanceVault | Dance Progress Tracker</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+
+        <div>
+            <h1>💃 DanceVault</h1>
+
+            <p>
+                Your personal dance practice & progress tracker
+            </p>
+        </div>
+
+        <button id="themeButton" class="theme-button">
+            🌙 Dark Mode
+        </button>
+
+    </header>
+
+
+    <main>
+
+        <!-- DASHBOARD -->
+        <section class="dashboard">
+
+            <div class="stat">
+                <span>🎵</span>
+                <h3>Total Routines</h3>
+                <p id="totalRoutines">0</p>
+            </div>
+
+            <div class="stat">
+                <span>🏆</span>
+                <h3>Completed</h3>
+                <p id="completedRoutines">0</p>
+            </div>
+
+            <div class="stat">
+                <span>📈</span>
+                <h3>Average Progress</h3>
+                <p id="averageProgress">0%</p>
+            </div>
+
+            <div class="stat">
+                <span>🔥</span>
+                <h3>Practice Streak</h3>
+                <p id="practiceStreak">0 days</p>
+            </div>
+
+        </section>
+
+
+        <!-- ACHIEVEMENTS -->
+        <section class="card">
+
+            <h2>🏅 Achievements</h2>
+
+            <div id="achievements" class="achievements">
+
+                <div class="achievement locked">
+                    🎵
+                    <span>First Routine</span>
+                </div>
+
+                <div class="achievement locked">
+                    🔥
+                    <span>3 Day Streak</span>
+                </div>
+
+                <div class="achievement locked">
+                    🏆
+                    <span>5 Completed</span>
+                </div>
+
+                <div class="achievement locked">
+                    💯
+                    <span>100% Progress</span>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ADD ROUTINE -->
+        <section class="card">
+
+            <h2>➕ Add New Routine</h2>
+
+            <p class="subtitle">
+                Track your dance practice and improve every day.
+            </p>
+
+
+            <div class="form-grid">
+
+                <div>
+
+                    <label>Song Name</label>
+
+                    <input
+                        type="text"
+                        id="songName"
+                        placeholder="e.g. Believer"
+                    >
+
+                </div>
+
+
+                <div>
+
+                    <label>Difficulty</label>
+
+                    <select id="difficulty">
+
+                        <option value="">
+                            Select difficulty
+                        </option>
+
+                        <option value="Easy">
+                            Easy
+                        </option>
+
+                        <option value="Medium">
+                            Medium
+                        </option>
+
+                        <option value="Hard">
+                            Hard
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div>
+
+                    <label>Status</label>
+
+                    <select id="status">
+
+                        <option value="Not Started">
+                            Not Started
+                        </option>
+
+                        <option value="Practicing">
+                            Practicing
+                        </option>
+
+                        <option value="Completed">
+                            Completed
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div>
+
+                    <label>Practice Date</label>
+
+                    <input
+                        type="date"
+                        id="practiceDate"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <label>Practice Goal</label>
+
+            <input
+                type="text"
+                id="practiceGoal"
+                placeholder="e.g. Improve footwork"
+            >
+
+
+            <label>Practice Progress</label>
+
+            <div class="progress-input">
+
+                <input
+                    type="range"
+                    id="progress"
+                    min="0"
+                    max="100"
+                    value="0"
+                >
+
+                <span id="progressValue">
+                    0%
+                </span>
+
+            </div>
+
+
+            <label>YouTube Tutorial Link</label>
+
+            <input
+                type="url"
+                id="youtubeLink"
+                placeholder="Paste YouTube link here"
+            >
+
+
+            <label>Practice Notes</label>
+
+            <textarea
+                id="notes"
+                placeholder="What did you practice today?"
+            ></textarea>
+
+
+            <button
+                id="addButton"
+                onclick="addRoutine()"
+            >
+                💃 Add Routine
+            </button>
+
+        </section>
+
+
+        <!-- ROUTINES -->
+        <section class="card">
+
+            <div class="routine-header">
+
+                <div>
+
+                    <h2>🎶 My Routines</h2>
+
+                    <p class="subtitle">
+                        Your dance journey in one place.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- SEARCH -->
+            <div class="filters">
+
+                <input
+                    type="text"
+                    id="searchRoutine"
+                    placeholder="🔍 Search song..."
+                >
+
+
+                <select id="filterDifficulty">
+
+                    <option value="All">
+                        All Difficulties
+                    </option>
+
+                    <option value="Easy">
+                        Easy
+                    </option>
+
+                    <option value="Medium">
+                        Medium
+                    </option>
+
+                    <option value="Hard">
+                        Hard
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ROUTINE LIST -->
+            <div id="routineList">
+
+                <p class="empty">
+                    No routines added yet.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROGRESS CHART -->
+        <section class="card">
+
+            <h2>📊 Progress Overview</h2>
+
+            <div class="chart">
+
+                <div class="chart-bar">
+
+                    <span id="easyBar"></span>
+
+                    <label>
+                        Easy
+                    </label>
+
+                </div>
+
+
+                <div class="chart-bar">
+
+                    <span id="mediumBar"></span>
+
+                    <label>
+                        Medium
+                    </label>
+
+                </div>
+
+
+                <div class="chart-bar">
+
+                    <span id="hardBar"></span>
+
+                    <label>
+                        Hard
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            💜 DanceVault • Practice. Improve. Perform.
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
